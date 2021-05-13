@@ -7,6 +7,7 @@ public class Ex0513_02 {
 		String[] name= new String[5];
 		int[][] score = new int[5][4]; //국어,영어,수학,합계
 		double[] avg = new double[5];
+		String[] subject = {"국어","영어","수학"};
 		
 		//입력
 		for(int i=0;i<5;i++) {
@@ -14,7 +15,7 @@ public class Ex0513_02 {
 			System.out.println("이름을 입력하세요.>>");
 			name[i] = scan.next();
 			for(int j=0;j<3;j++) {
-				System.out.println("점수를 입력하세요.>>");
+				System.out.println(subject[j]+"점수를 입력하세요.>>");
 				score[i][j] = scan.nextInt(); //i,0 i,1 i,2
 			}
 			//합계
