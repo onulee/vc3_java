@@ -8,6 +8,14 @@ public class Ex0513_01 {
 		// 1. 배열선언
 		// 2. 학생정보입력 - 합계계산, 평균계산 데이터 넣기
 		// 3. 학생정보출력
+		
+		
+		
+		
+		
+		
+		
+		
 		Scanner scan = new Scanner(System.in);
 		// 1.배열선언
 		String[] name = new String[3];
