@@ -15,7 +15,7 @@ public class Ex0517_01 {
 		int choice = 0; //선택번호 변수
 		int count=0; //학생숫자변수
 		String search_name = ""; // 찾고자하는이름변수 
-		int search_num1 = 0;       // 찾는 이름번호변수
+		int[] search_num1 = new int[5]; // 찾는 이름번호배열
 		int search_num2 = 0;       // 찾는 과목번호변수
 		
 		loop1:while (true) { //무한반복
@@ -85,16 +85,16 @@ public class Ex0517_01 {
 				search_name = scan.next();
 				
 				//이름검색
-				search_num1=-1;
+				search_num1[0]=-1;
 				for(int i=0;i<name.length;i++) {
 					if(search_name.equals(name[i])) {
-						search_num1 = i;
+						search_num1[0] = i;
 						break;//찾으면 for문 종료
 					}
 				}
 				
 				//찾고자하는 이름이 없을시
-				if(search_num1==-1) {
+				if(search_num1[0]==-1) {
 					System.out.println("찾고자 하는 이름이 없습니다!");
 					break;
 				}
@@ -105,35 +105,20 @@ public class Ex0517_01 {
 				System.out.println("원하는 번호를 입력하세요.>>");
 				search_num2 = scan.nextInt();
 				//현재점수확인
-				System.out.println("현재 점수 : "+score[search_num1][search_num2]);
+				System.out.println("현재 점수 : "+score[search_num1[0]][search_num2]);
 				System.out.println("수정점수 입력 : "); //100 -> 90
 				//점수수정
-				score[search_num1][search_num2] = scan.nextInt();
+				score[search_num1[0]][search_num2] = scan.nextInt();
 				//합계수정
-				score[search_num1][3]=score[search_num1][0]+score[search_num1][1]+score[search_num1][2];
+				score[search_num1[0]][3]=score[search_num1[0]][0]+score[search_num1[0]][1]+score[search_num1[0]][2];
 				//평균수정
-				avg[search_num1] = score[search_num1][3]/3.0;
+				avg[search_num1[0]] = score[search_num1[0]][3]/3.0;
 				System.out.println("수정이 완료되었습니다.!");
 				break;
 			case 4: //학생성적검색
 				//검색할 학생의 이름을 입력하세요.
 				System.out.println("검색할 학생의 이름을 입력하세요.>>");
 				search_name = scan.next();
-				
-				//이름검색
-				search_num1=-1;
-				for(int i=0;i<name.length;i++) {
-					if(search_name.equals(name[i])) {
-						search_num1 = i;
-						break;//찾으면 for문 종료
-					}
-				}
-				
-				//찾고자하는 이름이 없을시
-				if(search_num1==-1) {
-					System.out.println("찾고자 하는 학생이 없습니다!");
-					break;
-				}
 				
 				//찾은 학생 출력
 				for(int i=0;i<title.length;i++) {  //이름  국어  영어...
@@ -142,20 +127,28 @@ public class Ex0517_01 {
 				System.out.println();
 				System.out.println("------------------------------------------------");
 				
-				//이름출력
-				for(int i=search_num1;i<search_num1+1;i++) {
-					System.out.print(name[i]+"\t");
-					//점수출력 - 0
-					for(int j=0;j<score[i].length;j++) {
-						System.out.print(score[i][j]+"\t");
+				//이름검색
+				search_num1[0]=-1;
+				for (int i = 0; i < name.length; i++) {
+					if (name[i].contains(search_name)) {
+						
+						// 이름출력
+						System.out.print(name[i] + "\t");
+						// 점수출력 - 0
+						for (int j = 0; j < score[i].length; j++) {
+							System.out.print(score[i][j] + "\t");
+						}
+						// 평균
+						System.out.printf("%.2f\t", avg[i]);
+						// 등수
+						System.out.print(rank[i] + "\n");
 					}
-					//평균
-					System.out.printf("%.2f\t",avg[i]);
-					//등수
-					System.out.print(rank[i]+"\n");
 				}
-				System.out.println();
 				
+				//찾고자하는 이름이 없을시
+				if(search_num1[0]==-1) {
+					System.out.println("찾고자 하는 학생이 없습니다!");
+				}
 				break;
 			case 5: //등수처리
 				for(int i=0;i<count;i++) {
