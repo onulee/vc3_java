@@ -85,19 +85,27 @@ public class Ex0517_01 {
 				search_name = scan.next();
 				
 				//이름검색
-				search_num1[0]=-1;
-				for(int i=0;i<name.length;i++) {
-					if(search_name.equals(name[i])) {
-						search_num1[0] = i;
-						break;//찾으면 for문 종료
+				int temp_num = -1;  //검색된 학생의 번호선택 변수
+				System.out.println("[ 수정할 학생을 선택해주세요. ]");
+				for(int i=0;i<count;i++) {
+					if(name[i].contains(search_name)) {
+						System.out.printf("%d. %s \n",i,name[i]);
+						// 0. 홍길동
+						// 1. 홍길자
+						// 2. 홍길순
+						temp_num=0;
 					}
 				}
 				
-				//찾고자하는 이름이 없을시
-				if(search_num1[0]==-1) {
+				//찾고자하는 이름이 없을시/있을시
+				if(temp_num==-1) {
 					System.out.println("찾고자 하는 이름이 없습니다!");
 					break;
+				}else {
+					System.out.println("원하는 학생번호를 입력하세요.>>");
+					temp_num = scan.nextInt();
 				}
+				
 				
 				//수정할 과목을 선택
 				System.out.println("[ 수정할 과목 선택 ]");
@@ -105,14 +113,14 @@ public class Ex0517_01 {
 				System.out.println("원하는 번호를 입력하세요.>>");
 				search_num2 = scan.nextInt();
 				//현재점수확인
-				System.out.println("현재 점수 : "+score[search_num1[0]][search_num2]);
+				System.out.println("현재 점수 : "+score[temp_num][search_num2]);
 				System.out.println("수정점수 입력 : "); //100 -> 90
 				//점수수정
-				score[search_num1[0]][search_num2] = scan.nextInt();
+				score[temp_num][search_num2] = scan.nextInt();
 				//합계수정
-				score[search_num1[0]][3]=score[search_num1[0]][0]+score[search_num1[0]][1]+score[search_num1[0]][2];
+				score[temp_num][3]=score[temp_num][0]+score[temp_num][1]+score[temp_num][2];
 				//평균수정
-				avg[search_num1[0]] = score[search_num1[0]][3]/3.0;
+				avg[temp_num] = score[temp_num][3]/3.0;
 				System.out.println("수정이 완료되었습니다.!");
 				break;
 			case 4: //학생성적검색
@@ -129,7 +137,7 @@ public class Ex0517_01 {
 				
 				//이름검색
 				search_num1[0]=-1;
-				for (int i = 0; i < name.length; i++) {
+				for (int i = 0; i < count; i++) {
 					if (name[i].contains(search_name)) {
 						
 						// 이름출력
@@ -142,6 +150,7 @@ public class Ex0517_01 {
 						System.out.printf("%.2f\t", avg[i]);
 						// 등수
 						System.out.print(rank[i] + "\n");
+						search_num1[i] = i;
 					}
 				}
 				
