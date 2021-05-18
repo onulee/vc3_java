@@ -10,7 +10,7 @@ public class Ex0518_04 {
 		int search_num = -1;   //데이터검색 있는지 확인하는 변수
 
 		// 무한반복
-		while (true) {
+		loop1:while (true) {
 
 			System.out.println("[ 학생성적 프로그램 ]");
 			System.out.println("1. 학생성적추가");
@@ -96,8 +96,8 @@ public class Ex0518_04 {
 				System.out.println("수정할 과목번호를 입력하세요.>>");
 				int temp_num2 = scan.nextInt();
 				
+				//과목별 수정
 				switch(temp_num2) {
-				
 				case 0:
 					System.out.println("현재점수 : "+s[temp_num].kor);
 					System.out.println("수정할 점수를 입력하세요.>>");
@@ -154,9 +154,25 @@ public class Ex0518_04 {
 					System.out.println("찾을 데이터가 없습니다.");
 				}
 				break;
+				
+			case 5:
+				//등수처리
+				for(int i=0;i<Student2.count;i++) {
+					int rankNum=1; //등수count
+					for(int j=0;j<Student2.count;j++) {
+						if(s[i].total<s[j].total) {
+							rankNum++;
+						}
+					}
+					s[i].rank = rankNum;
+				}
+				System.out.println("등수처리가 완료되었습니다.!");
+				break;
+				
+			case 0:
+				System.out.println("프로그램을 종료합니다.!");
+				break loop1;
 			}
-
 		}
-
-	}
-}
+	}//main
+}//class
