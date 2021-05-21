@@ -2,7 +2,7 @@
 public class Student {
 	
 	static int count;  //클래스변수
-	int stu_number=++count;
+	String stu_number;  //S001,S002
 	String name;
 	int kor;
 	int eng;
@@ -11,6 +11,9 @@ public class Student {
 	double avg;
 	int rank;
 	
+	{ 
+		stu_number="S"+String.format("%03d", ++count);  //학생번호
+	}
 	Student(){}  //기본생성자
 	Student(String name,int kor,int eng,int math){
 		this.name = name;
