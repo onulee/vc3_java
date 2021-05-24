@@ -8,18 +8,20 @@ public class Ex0521_02 {
 		Student[] s = new Student[10]; // 10명의 데이터 저장배열
 		String search_name = ""; // 찾을 이름변수
 		int search_num = -1; // 데이터검색 있는지 확인하는 변수
+		Score_Process score = new Score_Process();
 
 		// 무한반복
 		loop1: while (true) {
-			mainPrint(); // 메인메뉴 출력메소드 호출
+			score.mainPrint(); // 메인메뉴 출력메소드 호출
 			int choice = scan.nextInt();
+			
 
 			switch (choice) {
 			case 1: // 학생성적추가
-				student_insert(s); // 학생성적추가 메소드호출
+				score.student_insert(s); // 학생성적추가 메소드호출
 				break;
 			case 2: // 학생성적출력
-				student_print(s); // 학생성적출력 메소드
+				score.student_print(s); // 학생성적출력 메소드
 				break;
 
 			case 3: // 학생성적수정
@@ -42,66 +44,8 @@ public class Ex0521_02 {
 	}// main
 
 	// [ 메소드 분리 ]
-	// 메인 메뉴 출력메소드
-	static void mainPrint() {
-		System.out.println("[ 학생성적 프로그램 ]");
-		System.out.println("1. 학생성적추가");
-		System.out.println("2. 학생성적출력");
-		System.out.println("3. 학생성적수정");
-		System.out.println("4. 학생성적검색");
-		System.out.println("5. 등수처리");
-		System.out.println("0. 프로그램종료");
-		System.out.println("------------------------------------");
-		System.out.println("원하는 번호를 입력하세요.>>");
-	}
 
-	// 1. 학생성적추가 메소드
-	static void student_insert(Student[] s) {
-		String name = "";
-		int kor = 0, eng = 0, math = 0;
-
-		for (int i = Student.count; i < s.length; i++) {
-			// 번호는 자동으로 입력됨.
-			System.out.println("이름을 입력하세요.>>(0.상위메뉴이동)");
-			String check = scan.next();
-
-			if (check.equals("0")) {
-				System.out.println("상위메뉴로 이동합니다.");
-				break;
-			}
-			name = check;
-			System.out.println("국어점수를 입력하세요.>>");
-			kor = scan.nextInt();
-			System.out.println("영어점수를 입력하세요.>>");
-			eng = scan.nextInt();
-			System.out.println("수학점수를 입력하세요.>>");
-			math = scan.nextInt();
-			// s[i]객체선언
-			s[i] = new Student(name, kor, eng, math);
-		}
-
-	}// 학생성적추가 메소드
-
-	// 상단출력부분 메소드
-	static void top_title() {
-		System.out.printf("번호\t이름\t국어\t영어\t수학\t합계\t평균\t등수\n");
-		System.out.println("---------------------------------------------------");
-	}
-
-	// 2. 학생성적출력 메소드
-	static void student_print(Student[] s) {
-		top_title(); // 상단출력부분 메소드
-		for (int i = 0; i < Student.count; i++) {
-			System.out.print(s[i].stu_number + "\t");
-			System.out.print(s[i].name + "\t");
-			System.out.print(s[i].kor + "\t");
-			System.out.print(s[i].eng + "\t");
-			System.out.print(s[i].math + "\t");
-			System.out.print(s[i].total + "\t");
-			System.out.printf("%.2f\t", s[i].avg);
-			System.out.print(s[i].rank + "\n");
-		}
-	}
+	
 
 	// 3. 학생성적수정 메소드
 	static void student_update(Student[] s) {
