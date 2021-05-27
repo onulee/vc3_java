@@ -34,6 +34,32 @@ public class Buyer {
 		System.out.println("보너스포인트 : "+bonusPoint);
 	}
 	
+	void summary() {
+		String product_list=""; 
+		if(list.isEmpty()) {
+			System.out.println("구매한 물품이 없습니다.");
+			return;  //메소드변경
+		}
+		int sum=0;
+		for(int i=0;i<list.size();i++) { //크기
+			Product p = (Product) list.get(i); //Object o.pro_name
+			product_list = product_list + p.getPro_name()+" ";
+			sum = sum + p.getPrice();
+			// 상품이름 pro_name
+			//product_list = product_list + b1.cart[i].getPro_name()+" ";
+		}
+		System.out.println("총구매 목록 개수 : "+list.size());
+		System.out.println("총구매 금액 : "+sum);
+		System.out.println("구매 목록 : "+product_list);
+		
+//		for(int i=0;i<b1.getCount();i++) {
+//			product_list = product_list + b1.cart[i].getPro_name()+" ";
+//		}
+//		System.out.println("총구매 목록 개수 : "+b1.getCount());
+//		System.out.println("구매 목록 : "+product_list);
+		
+	}
+	
 	
 
 	public String getMember_id() {

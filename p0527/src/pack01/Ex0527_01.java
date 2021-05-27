@@ -14,6 +14,7 @@ public class Ex0527_01 {
 			System.out.println("2. 아이폰 구매");
 			System.out.println("3. OLEDTV 구매");
 			System.out.println("4. 구매목록 보기");
+			System.out.println("5. 현금충전");
 			System.out.println("------------------------");
 			System.out.println("원하는 번호를 입력하세요.>>");
 			int choice = scan.nextInt();
@@ -32,24 +33,23 @@ public class Ex0527_01 {
 				b1.myInfo();
 				break;
 			case 4: //구매목록 보기
-				String product_list=""; 
-				for(int i=0;i<b1.list.size();i++) { //크기
-					Product p = (Product) b1.list.get(i); //Object o.pro_name
-					product_list = product_list + p.getPro_name()+" ";
-					// 상품이름 pro_name
-					//product_list = product_list + b1.cart[i].getPro_name()+" ";
-				}
-				System.out.println("총구매 목록 개수 : "+b1.list.size());
-				System.out.println("구매 목록 : "+product_list);
-				
-//				for(int i=0;i<b1.getCount();i++) {
-//					product_list = product_list + b1.cart[i].getPro_name()+" ";
-//				}
-//				System.out.println("총구매 목록 개수 : "+b1.getCount());
-//				System.out.println("구매 목록 : "+product_list);
+				b1.summary();
 				b1.myInfo();
-				
 				break;
+			case 5: //현금충전
+				System.out.println("얼마를 충전하시겠습니까?(0.상위메뉴이동)");
+				int cash = scan.nextInt();
+				if(cash==0) {
+					System.out.println("상위메뉴로 이동합니다.");
+					break;
+				}
+				cash = cash + b1.getMoney();
+				b1.setMoney(cash);
+				//b1.money = cash;
+				System.out.println(cash+" (만원)이 충전되었습니다.");
+				b1.myInfo();
+				break;
+				
 			}
 			
 		}
