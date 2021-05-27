@@ -32,6 +32,23 @@ public class Ex0527_01 {
 				b1.myInfo();
 				break;
 			case 4: //구매목록 보기
+				String product_list=""; 
+				for(int i=0;i<b1.list.size();i++) { //크기
+					Product p = (Product) b1.list.get(i); //Object o.pro_name
+					product_list = product_list + p.getPro_name()+" ";
+					// 상품이름 pro_name
+					//product_list = product_list + b1.cart[i].getPro_name()+" ";
+				}
+				System.out.println("총구매 목록 개수 : "+b1.list.size());
+				System.out.println("구매 목록 : "+product_list);
+				
+//				for(int i=0;i<b1.getCount();i++) {
+//					product_list = product_list + b1.cart[i].getPro_name()+" ";
+//				}
+//				System.out.println("총구매 목록 개수 : "+b1.getCount());
+//				System.out.println("구매 목록 : "+product_list);
+				b1.myInfo();
+				
 				break;
 			}
 			
