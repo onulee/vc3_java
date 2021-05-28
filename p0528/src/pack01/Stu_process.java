@@ -121,6 +121,22 @@ public class Stu_process {
 		}
 	}//student_search
 	
+	//등수처리 메소드
+	void student_rank(ArrayList list) {
+		for(int i=0;i<list.size();i++) {
+			Student s1 = (Student)list.get(i);
+			int rCount=1; //등수카운트
+			for(int j=0;j<list.size();j++) {
+				Student s2 = (Student)list.get(j);
+				if(s1.total<s2.total) {
+					rCount++; // 등수1증가
+				}
+			}
+			s1.rank = rCount; //등수를 rank저장	
+		}
+		System.out.println("등수처리가 완료되었습니다.");
+	}//student_rank
+	
 	
 	
 }

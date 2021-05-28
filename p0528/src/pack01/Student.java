@@ -2,7 +2,7 @@ package pack01;
 
 public class Student {
 	
-	static int count; //클래스변수:객체X 클래스명.변수명 - 공통으로 사용
+	static int count=1; //클래스변수:객체X 클래스명.변수명 - 공통으로 사용
 	int stu_num;
 	String stu_name;
 	int kor;
