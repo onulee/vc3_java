@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>회원가입</title>
+		<style type="text/css">
+		  .pointer1 { cursor:pointer; }
+		</style>
+	</head>
+	<body>
+	  <h3>회원가입</h3>
+	  <form action="./MC" method="post" name="form">
+	    <label for="id">아이디</label>
+	    <input type="text" name="id" id="id" required><br>
+	    <label for="pw">패스워드</label>
+	    <input type="password" name="pw" id="pw"><br>
+	    <label for="pw2">패스워드확인</label>
+	    <input type="text" name="pw2" id="pw2"><br>
+	    <label for="name">이름</label>
+	    <input type="text" name="name" id="name"><br>
+	    <label for="tel2">전화번호</label>
+        <select name="tel">
+           <option value="010" selected>010</option>
+           <option value="011">011</option>
+           <option value="017">017</option>
+           <option value="019">019</option>
+        </select>
+	    <input type="text" name="tel2" id="tel2"><br>
+	    <label>성별</label><br>
+	    <label for="male" class="pointer1">남자</label>
+	    <input type="radio" name="gender" id="male" value="남자">
+	    <label for="female" class="pointer1">여자</label>
+	    <input type="radio" name="gender" id="female" value="여자"><br>
+	    <label>취미</label><br>
+	    <label for="read" class="pointer1">
+	    <input type="checkbox" name="hobby" id="read" value="read">독서</label>
+	    <label for="swim" class="pointer1">
+	    <input type="checkbox" name="hobby" id="swim" value="swim">수영</label>
+	    <label for="game" class="pointer1">
+	    <input type="checkbox" name="hobby" id="game" value="game">게임</label>
+	    <label for="cook" class="pointer1">
+	    <input type="checkbox" name="hobby" id="cook" value="cook">요리</label>
+	    <br>
+	    <input type="submit" value="전송">
+	    <input type="reset" value="취소"><br>
+	  
+	  </form>
+	
+	</body>
+</html>

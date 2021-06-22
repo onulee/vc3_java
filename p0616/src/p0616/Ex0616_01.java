@@ -40,7 +40,9 @@ public class Ex0616_01 {
 		try {
 			Scanner scan = new Scanner(file1); //System.in:화면으로 입력,File->파일로 입력
 			String str = "";
+			//StringBuffer str1 = new StringBuffer("");
 			while(scan.hasNextLine()) {
+				//str1.append(scan.nextLine()+"\n");
 				str = str + scan.nextLine()+"\n";
 //				scan.nextLine(); //enter키 전까지 한줄을 입력받는 것
 //				scan.next();     // 사이띄우기 전까지 한 단어 입력받는 것
@@ -53,6 +55,7 @@ public class Ex0616_01 {
 			}
 			
 			FileWriter fw2 = new FileWriter(file2);
+			//fw2.write(str1.toString());
 			fw2.write(str);
 			fw2.flush();
 			fw2.close();
