@@ -28,11 +28,16 @@
 	     out.println("취미 : "+hobbys+"<br>");
 	     out.println("유입경로 : "+request.getParameter("channel")+"<br>");
 	  %>
+	  <!-- 
+	  <a href="./memForm2.jsp?memId=aaa&pw=1111&name=홍길동&gender=남자&hobby=cook">수정버튼</a>
+	   -->
 	  <form action="./memForm2.jsp" method="post" name="memForm">
 	    <input type="hidden" name="memId" value='<%=request.getParameter("memId")%>'>
 	    <input type="hidden" name="pw" value='<%=request.getParameter("pw")%>'>
-	    <input type="hidden" name="name" value='<%=request.getParameter("name")%>'>
+        <input type="hidden" name="name" value='<%=request.getParameter("name")%>'>
 	    <input type="hidden" name="gender" value='<%=request.getParameter("gender")%>'>
+	    <input type="hidden" name="hobby" value='<%=hobbys%>'>
+	    <input type="hidden" name="channel" value='<%=request.getParameter("channel")%>'>
 	    <input type="submit" value="수정">
 	  </form>
 	  

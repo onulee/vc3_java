@@ -37,7 +37,7 @@
 	</head>
 	<body>
 	  <h2>회원가입</h2>
-	  <form action="./memFormOk.jsp" method="post" name="memberForm"  >
+	  <form action="./memFormOk.jsp" method="get" name="memberForm"  >
 	    <label for="memId">아이디</label>
 	    <input type="text" id="memId" name="memId" required placeholder="아이디는 3자리 이상 넣으시오."><br>
 	    <label for="pw">패스워드</label>
