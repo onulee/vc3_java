@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>ex0623</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <context-param>
+    <param-name>masterId</param-name>
+    <param-value>abcde</param-value>
+  </context-param>
+  <context-param>
+    <param-name>masterPw</param-name>
+    <param-value>1111</param-value>
+  </context-param>
+  
+  
+  
+  <servlet>
+    <servlet-name>Ex0623_01</servlet-name>
+    <servlet-class>com.site.ex.Ex0623_01</servlet-class>
+    <init-param>
+       <param-name>id</param-name>
+       <param-value>admin</param-value>
+    </init-param>
+    <init-param>
+       <param-name>pw</param-name>
+       <param-value>1234</param-value>
+    </init-param>
+    <init-param>
+       <param-name>name</param-name>
+       <param-value>홍길동</param-value>
+    </init-param>
+    <init-param>
+       <param-name>path</param-name>
+       <param-value>c:/test/f1.txt</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Ex0623_01</servlet-name>
+    <url-pattern>/Ex01</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <!-- <listener>
+     <listener-class>com.site.ex.ContextL</listener-class>
+  </listener> -->
+  
+  
+  
+</web-app>
