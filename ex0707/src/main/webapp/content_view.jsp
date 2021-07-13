@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,6 +33,16 @@
    String bip = request.getRemoteAddr();
    String bid="1";
    String bhit="1";
+   
+   //날짜1
+   Date today = new Date();
+   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+   String bdate = sdf.format(today);
+   
+   //날짜2
+   SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+   String bdate2 = sdf2.format(System.currentTimeMillis());
+   
 %>
 <form action="./modify_view.jsp" name="form">
   <input type="hidden" name="bname" value="<%=bname %>">
