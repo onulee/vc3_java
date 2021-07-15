@@ -5,11 +5,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
 
 @WebServlet("/ModifyOk")
@@ -18,6 +21,7 @@ public class ModifyOk extends HttpServlet {
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doAction");
 		
+		DataSource datasource = null;
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		
@@ -41,8 +45,9 @@ public class ModifyOk extends HttpServlet {
 		
 		try {
 			System.out.println(hobbys);
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","ora_user","1234");
+			Context context = new InitialContext();
+			datasource = (DataSource)context.lookup("java:comp/env/jdbc/Oracle11g");
+			conn = datasource.getConnection();
 			String sql="update member2 set id=?,pw=?,name=?,nickName=?,gender=?,tel=?,address1=?,address2=?,hobby=? where id=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, id);

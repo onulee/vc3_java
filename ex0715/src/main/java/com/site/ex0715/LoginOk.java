@@ -6,12 +6,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 
 
 @WebServlet("/LoginOk")
@@ -21,6 +24,7 @@ public class LoginOk extends HttpServlet {
 		System.out.println("doAction");
 		request.setCharacterEncoding("utf-8");
 		
+		DataSource datasource=null;
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -29,13 +33,15 @@ public class LoginOk extends HttpServlet {
 		String pw = request.getParameter("pw");
 		
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","ora_user","1234");
+			//Class.forName("oracle.jdbc.driver.OracleDriver");
+			//conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","ora_user","1234");
+			Context context = new InitialContext();
+			datasource = (DataSource)context.lookup("java:comp/env/jdbc/Oracle11g");
+			conn = datasource.getConnection();
 			String sql="select * from member2 where id=? and pw=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pw);
-			//select -> executeQuery, insert,update,delete -> executeUpdate
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
