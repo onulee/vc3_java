@@ -9,6 +9,11 @@
 		<script type="text/javascript">
 		  //jQuery선언 - html 
 		  $(function(){
+			  var msg2 = <%=request.getParameter("msg")%>;
+			  if(msg2 !=null){
+					 alert(msg2);
+			  } 
+			  
 			  var msg1 = "<%=request.getParameter("msg")%>";
 			  //msg변수에 데이터가 있으면
 			  if(msg1 !="null"){

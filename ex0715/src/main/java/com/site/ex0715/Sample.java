@@ -1,67 +1,48 @@
-package controller;
+package com.site.ex0715;
 
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 
-@WebServlet("/LoginOk")
-public class LoginOk extends HttpServlet {
+@WebServlet("/Sample")
+public class Sample extends HttpServlet {
 	
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doAction");
 		request.setCharacterEncoding("utf-8");
 		
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		
-		Connection conn=null;
-		PreparedStatement pstmt=null;
-		Statement stmt=null;
-		ResultSet rs=null;
-		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","ora_user","1234");			
-			
-			String sql="select id,pw from member2 where id=? and pw=?";
-			pstmt = conn.prepareStatement(sql);
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","ora_user","1234");
+			String sql="select * from member2 where id=? and pw=?";
+			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pw);
-			rs = pstmt.executeQuery();
-			// id,pw로 검색한 데이터가 존재하면
-			if(rs.next()) {
-				//데이터 읽어오기
-				String rs_id = rs.getString("id");
-				String rs_nickName = rs.getString("nickName");
-				
-				//섹션 가져오기
-				HttpSession session = request.getSession();
-				session.setAttribute("id",rs_id);
-				session.setAttribute("nickName",rs_nickName);
-				//페이지 넘기기
-				response.sendRedirect("./index.jsp");
-			}else {
-				String msg = URLEncoder.encode("아이디와 패스워드가 일치하지 않습니다.");
-				response.sendRedirect("./login.jsp?msg='"+msg+"'");
-				// login.jsp?msg='id와pw가 일치하지 않습니다.'
-				
-			}
+			int i = pstmt.executeUpdate();
+			
+			
+			
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				if(rs!=null) rs.close();
 				if(pstmt!=null) pstmt.close();
@@ -74,24 +55,14 @@ public class LoginOk extends HttpServlet {
 		
 		
 		
-		
-		
-		
-		
-		
-		
 	}
-	
-	
-	
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doGet");
 		doAction(request,response);
-		
-	}
 	
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doPost");
 		doAction(request,response);

@@ -5,11 +5,28 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>회원가입</title>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript">
+		  function formCheck(){
+			 if($("#id").val().length<3){
+				 alert("아이디는 3자리이상 입력하셔야 합니다.");
+				 $("#id").focus();
+				 return false;
+			 } 
+			 $("#form").submit();
+		  }  
+		
+		  //jquery
+		  $(function(){
+			  
+		  });
+		  
+		</script>
 	</head>
 	<body>
-	 
+	  
 	  <h3>회원가입</h3>
-	  <form action="./JoinOk" id="form" name="form">
+	  <form action="./MemberOk" id="form" name="form">
 	    <label>아이디</label>
 	    <input type="text" id="id" name="id" placeholder="id는 5자리이상" required ><br>
 	    <label>비밀번호</label>
@@ -32,8 +49,8 @@
 	    <input type="checkbox" id="golf" name="hobby" value="golf"><label for="golf">골프</label>
 	    <input type="checkbox" id="run" name="hobby" value="run"><label for="run">조깅</label>
 	    <input type="checkbox" id="read" name="hobby" value="read"><label for="read">독서</label><br>
-	    <input type="submit" value="가입완료">
-	    <a href="./index.jsp"><input type="button" value="취소"></a><br>
+	    <input type="button" onclick="formCheck()" value="가입완료">
+	    <a href="./index.jsp"><input type="button"  value="취소"></a><br>
 	  
 	  </form>
 	
