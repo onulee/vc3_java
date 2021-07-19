@@ -23,7 +23,7 @@
 	     <h3><%=session.getAttribute("session_nickName") %>님 로그인되었습니다.</h3>
 	     <ul>
 	       <li><a href="logout.jsp">로그아웃</a></li>
-	       <li><a href="list.jsp">게시판</a></li>
+	       <li><a href="./board/boardList.jsp">게시판</a></li>
 	       <li><a href="modify.jsp">회원정보수정</a></li>
 	       <li><a href="memberList.jsp">전체회원리스트</a></li>
 	     </ul>	

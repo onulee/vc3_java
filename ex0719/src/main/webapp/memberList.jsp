@@ -7,7 +7,7 @@
 <html>
 <script type="text/javascript">
     
-    if(<%=!(session.getAttribute("session_id").equals("aaa")) %>){
+    if(<%=!(session.getAttribute("session_id").equals("admin")) %>){
     	alert("관리자만 접속이 가능합니다.");
     	location.href="./index.jsp";
     }	

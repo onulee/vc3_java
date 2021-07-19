@@ -23,10 +23,13 @@ public class MDao {
 	ResultSet rs = null;
 	
 	
-	//Connection객체 연결
+	//Connection객체 연결-db연결 dbURL,dbID,dbPW
 	public Connection getConnection() throws Exception {
+		//Context객체 생성
 		Context context = new InitialContext();
+		//context에 있는 jdbc/Oracle11g라는 이름을 가진 DataSource를 가져오기
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
+		//Connection 1개를 가져오기
 		return ds.getConnection();
 	}
 	
