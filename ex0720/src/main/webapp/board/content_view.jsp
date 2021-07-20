@@ -10,6 +10,7 @@
   BoardDao boardDao = new BoardDao();
   BoardVo boardVo = boardDao.boardOneSelect(Integer.parseInt(request.getParameter("bid")));
 %>
+<c:set var="boardVo" value="<%=boardVo %>" />
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>뷰페이지</title>
@@ -33,15 +34,21 @@
         <th colspan="3">제목</th>
       </tr>
       <tr>
-        <td colspan="3"><strong>게시판 글제목이 들어갑니다.</strong></td>
+        <td colspan="3"><strong>${boardVo.btitle }</strong></td>
       </tr>
       <tr>
-        <td>작성자가 들어갑니다.</td>
+        <td>${boardVo.bname }</td>
         <td>조회수</td>
-        <td>111</td>
+        <td>${baordVo.bhit }</td>
       </tr>
       <tr>
-        <td colspan="3" class="article">글 내용이 들어갑니다.</td>
+        <td colspan="3" class="article">${boardVo.bcontent }
+        <br>
+        <img src="../upload/${boardVo.bupload }">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3"><a href="../upload/${boardVo.bupload }" download >이미지 다운로드</a></td>
       </tr>
       <tr>
         <td colspan="3"><strong>다음글</strong> <span class="separator">|</span> [키즈잼] 2월 프로그램 안내</td>
@@ -51,9 +58,9 @@
       </tr>
     </table>
 
-    <a href=""><div class="list">목록</div></a>
+    <a href="./list.jsp"><div class="list">목록</div></a>
     <a href=""><div class="list">삭제</div></a>
-    <a href=""><div class="list">수정</div></a>
+    <a href="./modify_view.jsp?bid=${boardVo.bid}"><div class="list">수정</div></a>
     <a href=""><div class="list">답변달기</div></a>
   </section>
 </body>
