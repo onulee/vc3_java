@@ -5,6 +5,12 @@ import java.sql.Timestamp;
 public class BoardVo {
 	
 	public BoardVo() {}
+	public BoardVo(String btitle, String bcontent, String bname, String bupload) {
+		this.btitle = btitle;
+		this.bcontent = bcontent;
+		this.bname = bname;
+		this.bupload = bupload;
+	}
 	public BoardVo(int bid, String btitle, String bcontent, String bname, int bgroup, int bstep, int bindent,
 			Timestamp bdate, String bupload, int bhit) {
 		this.bid = bid;

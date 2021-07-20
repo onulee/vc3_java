@@ -22,6 +22,34 @@ public class BoardDao {
 	String btitle,bcontent,bname,bupload;
 	Timestamp bdate;
 	
+	
+	//board 1개 저장
+	public int boardInsert(BoardVo boardVo) {
+		int result=0;
+		try {
+			conn = getConnection();
+			String sql = "insert into board values(board_seq.nextval,?,?,?,board_seq.currval,0,0,sysdate,?,0)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, boardVo.getBtitle());
+			pstmt.setString(2, boardVo.getBcontent());
+			pstmt.setString(3, boardVo.getBname());
+			pstmt.setString(4, boardVo.getBupload());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	
+	// board 1개 정보 가져옴
 	public ArrayList<BoardVo> boardAllSelect(){
 		ArrayList<BoardVo> list = new ArrayList<BoardVo>();
 		
