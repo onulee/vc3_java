@@ -15,7 +15,8 @@
 	<%
 	  BoardDao boardDao = new BoardDao();
 	  BoardVo boardVo = null;
-	  String path = request.getRealPath("upload");
+	  //String path = request.getRealPath("upload");
+	  String path = "c:/upload";
 	  int size = 10*1024*1024; //10M
 	  int result=0;
 	  try{
