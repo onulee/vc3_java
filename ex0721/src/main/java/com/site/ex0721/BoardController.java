@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.connector.Response;
 
 
-@WebServlet("*.do")
+@WebServlet("*.bo")
 public class BoardController extends HttpServlet {
 	
 	protected void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
