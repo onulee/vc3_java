@@ -8,16 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.site.ex0721.Vo.BVo;
 import com.site.ex0721.dao.BDao;
 
-public class BoardServiceList implements BoardService {
+public class BoardServiceView implements BoardService {
 
 	@Override
 	public void excute(HttpServletRequest request, HttpServletResponse response) {
-
 		BDao bDao = new BDao();
-		//게시판 전체리스트 가져오기
-		ArrayList<BVo> list = bDao.boardAllList();
-		request.setAttribute("list", list);
-		
+		// boardList.jsp에서 파라미터값으로 bid전달 받음
+		int bid = Integer.parseInt(request.getParameter("bid"));
+		//게시판 1개 가져오기
+		BVo bVo = bDao.boardOneList(bid);
+		request.setAttribute("bVo", bVo);
+
 	}
 
 }

@@ -19,58 +19,118 @@ public class BDao {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	BoardVo boardVo = null;
+	BVo bVo = null;
 	String btitle, bcontent, bname, bupload;
 	int bid, bgroup, bstep, bindent, bhit;
 	Timestamp bdate;
-	
-	public ArrayList<BVo> boardList(){
-		ArrayList<BVo> list = new ArrayList<BVo>();
+
+	// 게시글 1개 저장
+	public int boardWrite(String bname, String btitle, String bcontent, String bupload) {
+		int result = 0;
 		try {
 			conn = getConnection();
-			String sql="select * from board";
+			String sql = "insert into board values(board_seq.nextval,?,?,?,board_seq.currval,0,0,sysdate,?,0)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.executeQuery();
-			
-			while(rs.next()) {
-				bid = rs.getInt("bid");
-				btitle = rs.getString("btitle");
-				bname = rs.getString("bname");
-				bgroup = rs.getInt("bid");
-				bstep = rs.getInt("bid");
-				bindent = rs.getInt("bid");
-				bid = rs.getInt("bid");
-				bid = rs.getInt("bid");
-				bid = rs.getInt("bid");
-				bid = rs.getInt("bid");
-				bid = rs.getInt("bid");
-				
-			}
-			
-			
-			
-			
-		}catch (Exception e) {
+			pstmt.setString(1, btitle);
+			pstmt.setString(2, bcontent);
+			pstmt.setString(3, bname);
+			pstmt.setString(4, bupload);
+			result = pstmt.executeUpdate();
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
-				if(rs!=null) rs.close();
-				if(pstmt!=null) pstmt.close();
-				if(conn!=null) conn.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
 		}
 		
-		
+		return result;
+	}// boardWrite
+
+	// 게시판 1개 가져오기
+	public BVo boardOneList(int bid) {
+		try {
+			conn = getConnection();
+			String sql = "select * from board where bid=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bid);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				bid = rs.getInt("bid");
+				btitle = rs.getString("btitle");
+				bcontent = rs.getString("bcontent");
+				bname = rs.getString("bname");
+				bgroup = rs.getInt("bgroup");
+				bstep = rs.getInt("bstep");
+				bindent = rs.getInt("bindent");
+				bdate = rs.getTimestamp("bdate");
+				bupload = rs.getString("bupload");
+				bhit = rs.getInt("bhit");
+				bVo = new BVo(bid, btitle, bcontent, bname, bgroup, bstep, bindent, bdate, bupload, bhit);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return bVo;
+	}// boardOneList
+
+	// 게시판 전체리스트 가져오기
+	public ArrayList<BVo> boardAllList() {
+		ArrayList<BVo> list = new ArrayList<BVo>();
+		try {
+			conn = getConnection();
+			String sql = "select * from board";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				bid = rs.getInt("bid");
+				btitle = rs.getString("btitle");
+				bcontent = rs.getString("bcontent");
+				bname = rs.getString("bname");
+				bgroup = rs.getInt("bgroup");
+				bstep = rs.getInt("bstep");
+				bindent = rs.getInt("bindent");
+				bdate = rs.getTimestamp("bdate");
+				bupload = rs.getString("bupload");
+				bhit = rs.getInt("bhit");
+				bVo = new BVo(bid, btitle, bcontent, bname, bgroup, bstep, bindent, bdate, bupload, bhit);
+				list.add(bVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
 		return list;
-	}
-	
-	
-	
-	
-	
-	
+	}// boardAllList
 
 	// context접근해서 DataSource Connection객체 1개 가져옴.
 	public Connection getConnection() throws Exception {
