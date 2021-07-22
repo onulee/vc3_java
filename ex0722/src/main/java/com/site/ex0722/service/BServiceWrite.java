@@ -1,4 +1,4 @@
-package com.site.ex0722.BService;
+package com.site.ex0722.service;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.site.ex0722.dao.BDao;
-import com.site.ex0722.service.BService;
 import com.site.ex0722.vo.BVo;
 
 public class BServiceWrite implements BService {

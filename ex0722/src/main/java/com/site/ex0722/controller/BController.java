@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.site.ex0722.BService.BServiceWrite;
 import com.site.ex0722.service.BService;
 import com.site.ex0722.service.BServiceDelete;
 import com.site.ex0722.service.BServiceList;
 import com.site.ex0722.service.BServiceView;
+import com.site.ex0722.service.BServiceWrite;
 
 
 @WebServlet("*.do")
