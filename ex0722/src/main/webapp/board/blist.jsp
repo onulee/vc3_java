@@ -52,7 +52,8 @@
 	      <tr>
 	        <td><span class="table-notice">${bVo.bid }</span></td>
 	        <td class="table-title">
-	        <a href="./bview.do?bid=${bVo.bid}">${bVo.btitle }</a>
+	          <c:forEach begin="1" end="${bVo.bindent}">▶</c:forEach>
+	          <a href="./bview.do?bid=${bVo.bid}">${bVo.btitle }</a>
 	        </td>
 	        <td>${bVo.bname }</td>
 	        <td>${bVo.bdate }</td>

@@ -69,7 +69,7 @@ public class BController extends HttpServlet {
 		}else if(filepath.equals("/board/breplyOk.do")){
 			bService = new BServiceReplyWrite(); //답변달기 insert
 			bService.execute(request, response);
-			dispatcher = request.getRequestDispatcher("blist.do");
+			dispatcher = request.getRequestDispatcher("reset.jsp");
 		}
 		else {
 			// *.do 잘못된 주소 입력은 모두 root페이지로 이동

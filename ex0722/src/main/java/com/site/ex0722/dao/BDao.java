@@ -73,11 +73,34 @@ public class BDao {
 		return result;
 	}//boardUpdate
 	
+	// replyboard step 1씩 증가
+	public void boardStepAdd(int bgroup,int bstep) {
+		try {
+			conn = getConnection();
+			String sql = "update board set bstep=bstep+1 where bgroup=? and bstep > ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bgroup);
+			pstmt.setInt(2, bstep);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}//boardStepAdd
 	
 	//replyboard 1개저장 - int
 	public int boardReplyInsert(int bid, String btitle, String bcontent, String bname, int bgroup, int bstep,
 			int bindent, String bupload) {
 		int result=0;
+		//replyboard step 1씩 증가
+		boardStepAdd(bgroup,bstep);
+		
 		try {
 			conn = getConnection();
 			String sql = "insert into board values(board_seq.nextval,?,?,?,?,?,?,sysdate,?,0)";
@@ -197,7 +220,7 @@ public class BDao {
 		ArrayList<BVo> list = new ArrayList<BVo>();
 		try {
 			conn = getConnection();
-			String sql = "select * from board order by bid desc";
+			String sql = "select * from board order by bgroup desc, bstep asc";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
