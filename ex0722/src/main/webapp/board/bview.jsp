@@ -72,7 +72,7 @@
 
     <a href="blist.do"><div class="list">목록</div></a>
     <a href="#" onclick="deleteList()"><div class="list">삭제</div></a>
-    <a href="bmodify.do"><div class="list">수정</div></a>
+    <a href="bmodify.do?bid=${bVo.bid }"><div class="list">수정</div></a>
     <a href="breply.do"><div class="list">답변달기</div></a>
   </section>
 </body>

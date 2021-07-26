@@ -54,6 +54,7 @@
 	        
 	        //submit
 	        function submitForm(){
+	        	// input중 checkbox의 이름이 filecheck라고 되어 있는 것
 	        	$("#fileCount").val($("input:checkbox[name=filecheck]").length);
 	        	$("#testForm").submit();
 	        }
@@ -63,6 +64,10 @@
 	<body>
 	  <h3>다중파일업로드</h3>
 	  <form action="testFormOk.jsp" id="testForm" method="post" name="testForm" enctype="multipart/form-data">
+	    <button type="button" onclick="addInput()">파일업로드 행추가</button>
+	    <button type="button" onclick="subInput()">파일업로드 행삭제</button><br>
+	    <br><br>
+	    
 	    <input type="hidden" id="fileCount" name="fileCount">
 	    <label>작성자</label>
 	    <input type="text" id="name" name="name"><br> 
@@ -70,9 +75,7 @@
 	    <input type="text" id="title" name="title"><br>
 	    <input type="button" onclick="submitForm()" value="파일전송"><br>
 	    <br><br>
-	    <button type="button" onclick="addInput()">파일업로드 행추가</button>
-	    <button type="button" onclick="subInput()">파일업로드 행삭제</button><br>
-	    <br>
+	    
 	    <table>
 	      <tr>
 	        <th>체크</th>

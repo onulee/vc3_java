@@ -47,6 +47,33 @@ public class BDao {
 		return result;
 	}//boardDelete
 	
+	
+	//board 1개 수정저장 - int
+	public int boardUpdate(int bid, String btitle, String bcontent, String bupload) {
+		int result=0;
+		try {
+			conn = getConnection();
+			String sql = "update board set btitle=?,bcontent=?,bupload=? where bid=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, btitle);
+			pstmt.setString(2, bcontent);
+			pstmt.setString(3, bupload);
+			pstmt.setInt(4, bid);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}//boardUpdate
+	
+	
 	//board 1개 저장 - int
 	public int boardInsert(String btitle, String bcontent, String bname, String bupload) {
 		int result=0;
@@ -63,7 +90,6 @@ public class BDao {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (rs != null)	rs.close();
 				if (pstmt != null) pstmt.close();
 				if (conn != null) conn.close();
 			} catch (Exception e2) {
@@ -73,15 +99,39 @@ public class BDao {
 		return result;
 	}//boardInsert
 	
+	// 조회수 1증가
+	public void boardBhit(int bid) {
+		try {
+			conn = getConnection();
+			String sql = "update board set bhit=bhit+1 where bid=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bid);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+	}//boardBhit
 	
 	// board 1개리스트 가져오기 - BVo
 	public BVo boardOneSelect(int bid) {
+		//조회수 1증가
+		boardBhit(bid);
+		System.out.println("boardBhit");
 		try {
 			conn = getConnection();
 			String sql = "select * from board where bid=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, bid);
 			rs = pstmt.executeQuery();
+			
 			
 			while(rs.next()) {
 				bid = rs.getInt("bid");
@@ -163,6 +213,8 @@ public class BDao {
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
 		return ds.getConnection();
 	}// getConnection
+
+	
 
 
 	

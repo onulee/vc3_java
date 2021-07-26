@@ -28,6 +28,7 @@
 		  //파일첨부 개수
 		   String[] uploads = new String[fileCount];
 		  
+		  //파일 첨부 개수만큼 배열이 넘어옴.
 		  Enumeration e = multi.getFileNames();
 		  int i=0;
 		  while(e.hasMoreElements()){ //읽어올 데이터가 있는지 확인
