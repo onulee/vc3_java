@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.site.ex0722.service.BService;
 import com.site.ex0722.service.BServiceDelete;
 import com.site.ex0722.service.BServiceList;
+import com.site.ex0722.service.BServiceReplyWrite;
 import com.site.ex0722.service.BServiceUpdate;
 import com.site.ex0722.service.BServiceView;
 import com.site.ex0722.service.BServiceWrite;
@@ -59,6 +60,14 @@ public class BController extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("bmodify.jsp");
 		}else if(filepath.equals("/board/bmodifyOk.do")){
 			bService = new BServiceUpdate(); //수정update
+			bService.execute(request, response);
+			dispatcher = request.getRequestDispatcher("blist.do");
+		}else if(filepath.equals("/board/breply.do")){
+			bService = new BServiceView(); //view,modify,reply같이 사용
+			bService.execute(request, response);
+			dispatcher = request.getRequestDispatcher("breply.jsp");
+		}else if(filepath.equals("/board/breplyOk.do")){
+			bService = new BServiceReplyWrite(); //답변달기 insert
 			bService.execute(request, response);
 			dispatcher = request.getRequestDispatcher("blist.do");
 		}

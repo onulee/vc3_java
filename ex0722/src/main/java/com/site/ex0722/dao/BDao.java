@@ -74,6 +74,37 @@ public class BDao {
 	}//boardUpdate
 	
 	
+	//replyboard 1개저장 - int
+	public int boardReplyInsert(int bid, String btitle, String bcontent, String bname, int bgroup, int bstep,
+			int bindent, String bupload) {
+		int result=0;
+		try {
+			conn = getConnection();
+			String sql = "insert into board values(board_seq.nextval,?,?,?,?,?,?,sysdate,?,0)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, btitle);
+			pstmt.setString(2, bcontent);
+			pstmt.setString(3, bname);
+			pstmt.setInt(4, bgroup);
+			pstmt.setInt(5, bstep+1);
+			pstmt.setInt(6, bindent+1);
+			pstmt.setString(7, bupload);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}//boardReplyInsert
+	
+	
+	
 	//board 1개 저장 - int
 	public int boardInsert(String btitle, String bcontent, String bname, String bupload) {
 		int result=0;
@@ -213,6 +244,9 @@ public class BDao {
 		ds = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
 		return ds.getConnection();
 	}// getConnection
+
+
+	
 
 	
 
